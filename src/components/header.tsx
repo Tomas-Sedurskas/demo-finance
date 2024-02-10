@@ -14,7 +14,7 @@ export const Header = () => {
   // add logo
 
   return (
-    <div className=" p-3 border-b w-full">
+    <div className="py-3 px-6 border-b w-full">
       <div className="flex max-w-screen-2xl mx-auto  justify-between">
         <img src="/logo.svg" className="h-[40px] py-2" />
 
