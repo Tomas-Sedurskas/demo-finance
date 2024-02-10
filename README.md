@@ -7,7 +7,7 @@ The code will be written in a few days.
 > Additional commits may happen later to showcase additional features or fix a bug.
 
 Here's a link to a live site:
-[https://demo-finance.vercel.app/](https://demo-finance.vercel.app/)
+[https://demo-finance-sandy.vercel.app/](https://demo-finance-sandy.vercel.app/)
 
 > Deployed to Vercel
 
