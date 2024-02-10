@@ -14,31 +14,33 @@ export const Header = () => {
   // add logo
 
   return (
-    <div className="flex justify-between p-3 border-b ">
-      <img src="/logo.svg" className="h-[40px] p-2" />
+    <div className=" p-3 border-b w-full">
+      <div className="flex max-w-screen-2xl mx-auto  justify-between">
+        <img src="/logo.svg" className="h-[40px] py-2" />
 
-      <div className="flex gap-6">
-        <Popover>
-          <PopoverTrigger asChild>
-            <Button
-              variant="ghost"
-              className="text-neutral-600 rounded-full"
-              size="icon"
-            >
-              <Bell className="h-4 w-4" />
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="p-0">
-            <div className="text-center border-b p-3 font-bold">
-              Your Notifications
-            </div>
-            <div className="p-3 flex flex-col">Notifications go here</div>
-          </PopoverContent>
-        </Popover>
-        <Avatar>
-          <AvatarImage src="/user.jpg" />
-          <AvatarFallback className="bg-neutral-300">TS</AvatarFallback>
-        </Avatar>
+        <div className="flex gap-6">
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button
+                variant="ghost"
+                className="text-neutral-600 rounded-full"
+                size="icon"
+              >
+                <Bell className="h-4 w-4" />
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="p-0">
+              <div className="text-center border-b p-3 font-bold">
+                Your Notifications
+              </div>
+              <div className="p-3 flex flex-col">Notifications go here</div>
+            </PopoverContent>
+          </Popover>
+          <Avatar>
+            <AvatarImage src="/user.jpg" />
+            <AvatarFallback className="bg-neutral-300">TS</AvatarFallback>
+          </Avatar>
+        </div>
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ export const BaseLayout = ({ children }: PropsWithChildren) => {
   return (
     <>
       <Header />
-      <div>{children}</div>
+      <div className="max-w-screen-2xl mx-auto">{children}</div>
     </>
   );
 };
