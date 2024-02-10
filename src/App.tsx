@@ -1,10 +1,13 @@
-import { Button } from "@/components/ui/button";
+import { BaseLayout } from "./layouts/baseLayout";
+import { Dashboard } from "./pages/dashboard";
 
 function App() {
   return (
-    <div>
-      <Button>Click me</Button>
-    </div>
+    <>
+      <BaseLayout>
+        <Dashboard />
+      </BaseLayout>
+    </>
   );
 }
 
