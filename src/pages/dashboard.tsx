@@ -15,13 +15,11 @@ export const Dashboard = () => {
         throw new Error("Network response was not ok");
       }
       const data = await res.json();
-      console.log(data);
-      return data || [];
+      return data;
     },
   });
 
-  console.log(data);
-
+  console.log("render");
   return (
     <div className="flex gap-6 p-6 w-full">
       <div className="flex flex-col w-96 gap-4">
@@ -64,7 +62,7 @@ export const Dashboard = () => {
             Add Spending Limit Here
           </div>
         </div>
-        <DataTable columns={columns} data={data} />
+        <DataTable columns={columns} data={data ? data : []} />
       </div>
     </div>
   );
