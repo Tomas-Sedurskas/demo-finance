@@ -1,23 +1,26 @@
 import { Card } from "@/components/card";
-import { Payment, columns } from "@/components/dataTable/columns";
+import { columns } from "@/components/dataTable/columns";
 import { DataTable } from "@/components/dataTable/dataTable";
 import { Button } from "@/components/ui/button";
+import { useQuery } from "react-query";
 
 export const Dashboard = () => {
-  const data: Payment[] = [
-    {
-      id: "728ed52f",
-      amount: 100,
-      status: "pending",
-      email: "m@example.com",
+  const { data } = useQuery({
+    queryKey: ["payments"],
+    queryFn: async () => {
+      const res = await fetch(
+        "https://json-mock-server-tau.vercel.app/payments"
+      );
+      if (!res.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await res.json();
+      console.log(data);
+      return data || [];
     },
-    {
-      id: "728hd52f",
-      amount: 200,
-      status: "success",
-      email: "n@example.com",
-    },
-  ];
+  });
+
+  console.log(data);
 
   return (
     <div className="flex gap-6 p-6 w-full">
