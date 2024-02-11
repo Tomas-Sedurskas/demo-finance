@@ -30,14 +30,12 @@ export const Header = () => {
               </Button>
             </PopoverTrigger>
             <PopoverContent className="p-0">
-              <div className="text-center border-b p-3 font-bold">
-                Your Notifications
-              </div>
+              <div className="text-center border-b p-3">Your Notifications</div>
               <div className="p-3 flex flex-col">Notifications go here</div>
             </PopoverContent>
           </Popover>
           <Avatar>
-            <AvatarImage src="/user.jpg" />
+            <AvatarImage src="/tomas.jpg" />
             <AvatarFallback className="bg-neutral-300">TS</AvatarFallback>
           </Avatar>
         </div>

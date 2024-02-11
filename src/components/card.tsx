@@ -1,4 +1,5 @@
 import { Payment } from "./dataTable/columns";
+import clsx from "clsx";
 
 interface Props {
   id: string;
@@ -6,13 +7,26 @@ interface Props {
   cardNumber: string;
   spendingLimit: number;
   paymentHistory: Payment[];
+  selectedCard: string;
   setSelectedCard: (id: string) => void;
+  brand: string;
 }
 
-export const Card = ({ id, balance, cardNumber, setSelectedCard }: Props) => {
+export const Card = ({
+  id,
+  balance,
+  cardNumber,
+  setSelectedCard,
+  selectedCard,
+  brand,
+}: Props) => {
   return (
     <button
-      className="border rounded-md flex flex-col p-6 gap-6"
+      className={clsx(
+        "border rounded-md flex flex-col p-6 gap-6 hover:scale-105 transition-all hover:shadow-md",
+        selectedCard === id &&
+          "bg-gradient-to-br from-white via-indigo-600/30 to-blue-600/40 border-blue-600/40"
+      )}
       onClick={() => {
         setSelectedCard(id);
       }}
@@ -22,7 +36,7 @@ export const Card = ({ id, balance, cardNumber, setSelectedCard }: Props) => {
           <span className="leading-4 ">Balance</span>
           <div className="text-3xl">{balance}€</div>
         </div>
-        <img src="/mastercard.png" className="h-5" />
+        <img src={`/${brand}.png`} className="h-5" />
       </div>
 
       <div className="flex justify-between items-center">

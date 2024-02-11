@@ -18,7 +18,7 @@ function App() {
       <BaseLayout>
         <Home />
       </BaseLayout>
-      <ReactQueryDevtools initialIsOpen={true} />
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }

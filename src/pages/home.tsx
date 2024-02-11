@@ -1,11 +1,12 @@
 import { Card } from "@/components/card";
 import { Dashboard } from "@/components/dashboard";
+import { Skeleton } from "@/components/ui/skeleton";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 
 export const Home = () => {
   const [selectedCard, setSelectedCard] = useState("1");
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["cards"],
     queryFn: async () => {
       const res = await fetch("https://json-mock-server-tau.vercel.app/cards");
@@ -17,14 +18,19 @@ export const Home = () => {
     },
   });
 
-  console.log(data);
-
   return (
     <div className="flex gap-6 p-6 w-full">
       <div className="flex flex-col w-96 gap-4">
-        {data &&
+        {isLoading && <Skeleton className="w-full h-40" />}
+        {!isLoading &&
+          !!data &&
           data.map((card: any) => (
-            <Card key={card.id} {...card} setSelectedCard={setSelectedCard} />
+            <Card
+              key={card.id}
+              {...card}
+              setSelectedCard={setSelectedCard}
+              selectedCard={selectedCard}
+            />
           ))}
       </div>
       <Dashboard selectedCard={selectedCard} />
