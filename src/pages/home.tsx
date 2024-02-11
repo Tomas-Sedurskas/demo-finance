@@ -1,10 +1,10 @@
 import { Card } from "@/components/card";
 import { Dashboard } from "@/components/dashboard";
+import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import { useQuery } from "react-query";
 
 export const Home = () => {
-  const [selectedCard, setSelectedCard] = useState("");
+  const [selectedCard, setSelectedCard] = useState("1");
   const { data } = useQuery({
     queryKey: ["cards"],
     queryFn: async () => {

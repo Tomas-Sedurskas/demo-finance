@@ -2,8 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { DataTable } from "@/components/dataTable/dataTable";
 import { columns } from "./dataTable/columns";
-import { useQuery } from "react-query";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useQuery } from "@tanstack/react-query";
 
 interface Props {
   selectedCard: string;
@@ -12,7 +12,6 @@ interface Props {
 export const Dashboard = ({ selectedCard }: Props) => {
   const { data } = useQuery({
     queryKey: ["paymentHistory", selectedCard],
-    enabled: !!selectedCard,
     queryFn: async () => {
       const res = await fetch(
         `https://json-mock-server-tau.vercel.app/paymentHistory?cardId=${selectedCard}`
@@ -27,7 +26,6 @@ export const Dashboard = ({ selectedCard }: Props) => {
 
   const card = useQuery({
     queryKey: ["card", selectedCard],
-    enabled: !!selectedCard,
     queryFn: async () => {
       const res = await fetch(
         `https://json-mock-server-tau.vercel.app/cards/${selectedCard}`
