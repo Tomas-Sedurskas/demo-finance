@@ -2,6 +2,7 @@ import { Card } from "@/components/card";
 import { columns } from "@/components/dataTable/columns";
 import { DataTable } from "@/components/dataTable/dataTable";
 import { Button } from "@/components/ui/button";
+import { Progress } from "@/components/ui/progress";
 import { useQuery } from "react-query";
 
 export const Dashboard = () => {
@@ -19,13 +20,13 @@ export const Dashboard = () => {
     },
   });
 
-  console.log("render");
   return (
     <div className="flex gap-6 p-6 w-full">
       <div className="flex flex-col w-96 gap-4">
         {["1", "2", "3"].map((key) => (
           <Card key={key} />
         ))}
+        <Button className="w-full">Add Card</Button>
       </div>
       <div className="flex flex-col w-full gap-2">
         <div className="flex w-full gap-2">
@@ -59,7 +60,12 @@ export const Dashboard = () => {
           </div>
 
           <div className="flex flex-col w-full border rounded-md p-6">
-            Add Spending Limit Here
+            <span>Total Expenses</span>
+            <div>
+              <div className="text-3xl">9,294€</div>
+              <div>from 10,000€</div>
+            </div>
+            <Progress value={93} />
           </div>
         </div>
         <DataTable columns={columns} data={data ? data : []} />
