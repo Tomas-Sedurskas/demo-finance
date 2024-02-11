@@ -1,7 +1,24 @@
 import { Card } from "@/components/card";
+import { Payment, columns } from "@/components/dataTable/columns";
+import { DataTable } from "@/components/dataTable/dataTable";
 import { Button } from "@/components/ui/button";
 
 export const Dashboard = () => {
+  const data: Payment[] = [
+    {
+      id: "728ed52f",
+      amount: 100,
+      status: "pending",
+      email: "m@example.com",
+    },
+    {
+      id: "728hd52f",
+      amount: 200,
+      status: "success",
+      email: "n@example.com",
+    },
+  ];
+
   return (
     <div className="flex gap-6 p-6 w-full">
       <div className="flex flex-col w-96 gap-4">
@@ -44,9 +61,7 @@ export const Dashboard = () => {
             Add Spending Limit Here
           </div>
         </div>
-        <div className="flex flex-col w-full border rounded-md p-6">
-          Add Transactions Here
-        </div>
+        <DataTable columns={columns} data={data} />
       </div>
     </div>
   );
