@@ -1,14 +1,20 @@
 import { BaseLayout } from "./layouts/baseLayout";
-import { Dashboard } from "./pages/dashboard";
+import { Home } from "./pages/home";
 import { QueryClient, QueryClientProvider } from "react-query";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false, // default: true
+    },
+  },
+});
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <BaseLayout>
-        <Dashboard />
+        <Home />
       </BaseLayout>
     </QueryClientProvider>
   );
