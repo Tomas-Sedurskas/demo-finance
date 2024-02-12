@@ -1,6 +1,7 @@
 import { Card } from "@/components/card";
 import { Dashboard } from "@/components/dashboard";
 import { Skeleton } from "@/components/ui/skeleton";
+import { BASE_URL } from "@/constants";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 
@@ -9,7 +10,7 @@ export const Home = () => {
   const { data, isLoading } = useQuery({
     queryKey: ["cards"],
     queryFn: async () => {
-      const res = await fetch("https://json-mock-server-tau.vercel.app/cards");
+      const res = await fetch(`${BASE_URL}/cards`);
       if (!res.ok) {
         throw new Error("Network response was not ok");
       }

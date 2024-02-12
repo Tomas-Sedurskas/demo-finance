@@ -5,6 +5,8 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useQuery } from "@tanstack/react-query";
 import { useMemo } from "react";
 import { Transfer } from "@/components/transfer";
+import { Card } from "./card";
+import { BASE_URL } from "@/constants";
 
 interface Props {
   selectedCard: string;
@@ -15,7 +17,7 @@ export const Dashboard = ({ selectedCard }: Props) => {
     queryKey: ["paymentHistory", selectedCard],
     queryFn: async (): Promise<Payment[]> => {
       const res = await fetch(
-        `https://json-mock-server-tau.vercel.app/paymentHistory?cardId=${selectedCard}`
+        `${BASE_URL}/paymentHistory?cardId=${selectedCard}`
       );
       if (!res.ok) {
         throw new Error("Network response was not ok");
@@ -27,10 +29,8 @@ export const Dashboard = ({ selectedCard }: Props) => {
 
   const card = useQuery({
     queryKey: ["card", selectedCard],
-    queryFn: async () => {
-      const res = await fetch(
-        `https://json-mock-server-tau.vercel.app/cards/${selectedCard}`
-      );
+    queryFn: async (): Promise<Card> => {
+      const res = await fetch(`${BASE_URL}/cards/${selectedCard}`);
       if (!res.ok) {
         throw new Error("Network response was not ok");
       }
@@ -74,7 +74,7 @@ export const Dashboard = ({ selectedCard }: Props) => {
               **** **** **** {card.data.cardNumber.slice(-5)}
             </div>
             <div className="flex gap-2 ">
-              <Transfer selectedCard={selectedCard} />
+              <Transfer {...card.data} />
             </div>
           </div>
 

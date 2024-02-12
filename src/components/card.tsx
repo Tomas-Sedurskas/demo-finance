@@ -1,15 +1,16 @@
-import { Payment } from "./dataTable/columns";
 import clsx from "clsx";
 
-interface Props {
+export interface Card {
   id: string;
   balance: number;
   cardNumber: string;
   spendingLimit: number;
-  paymentHistory: Payment[];
+  brand: string;
+}
+
+export interface Props extends Card {
   selectedCard: string;
   setSelectedCard: (id: string) => void;
-  brand: string;
 }
 
 export const Card = ({
@@ -25,7 +26,7 @@ export const Card = ({
       className={clsx(
         "border rounded-md flex flex-col p-6 gap-6 hover:scale-105 transition-all hover:shadow-md",
         selectedCard === id &&
-          "bg-gradient-to-br from-white via-indigo-600/30 to-blue-600/40 border-blue-600/40"
+          "bg-gradient-to-br from-white via-indigo-600/30 to-blue-600/40 border-blue-600/0"
       )}
       onClick={() => {
         setSelectedCard(id);

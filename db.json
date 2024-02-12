@@ -1,0 +1,144 @@
+{
+  "cards": [
+    {
+      "id": "1",
+      "balance": 8000,
+      "cardNumber": "1234 1234 1234 1234",
+      "spendingLimit": 4000,
+      "brand": "mastercard"
+    },
+    {
+      "id": "2",
+      "balance": 3000,
+      "cardNumber": "4321 4321 4321 4321",
+      "spendingLimit": 2000,
+      "brand": "visa"
+    },
+    {
+      "id": "3",
+      "balance": 7590.32,
+      "cardNumber": "4242 4242 4242 4242",
+      "spendingLimit": 1000,
+      "brand": "mastercard"
+    }
+  ],
+  "paymentHistory": [
+    {
+      "id": "1",
+      "amount": 72.33,
+      "status": "pending",
+      "transactor": "Katty Stevens",
+      "date": "2024-02-11",
+      "cardId": "1",
+      "type": "outgoing"
+    },
+    {
+      "id": "2",
+      "amount": 199.99,
+      "status": "failed",
+      "transactor": "Eric Williams",
+      "date": "2024-02-9",
+      "cardId": "1",
+      "type": "outgoing"
+    },
+    {
+      "id": "3",
+      "amount": 1800.99,
+      "status": "success",
+      "transactor": "Leah Lemmons",
+      "date": "2024-02-8",
+      "cardId": "1",
+      "type": "incoming"
+    },
+    {
+      "id": "4",
+      "amount": 249.99,
+      "status": "pending",
+      "transactor": "Elmer Smith",
+      "date": "2024-02-1",
+      "cardId": "1",
+      "type": "outgoing"
+    },
+    {
+      "id": "5",
+      "amount": 58.31,
+      "status": "pending",
+      "transactor": "Gale Jones",
+      "date": "2024-02-11",
+      "cardId": "2",
+      "type": "outgoing"
+    },
+    {
+      "id": "6",
+      "amount": 200.49,
+      "status": "success",
+      "transactor": "Ronald Johnson",
+      "date": "2024-02-9",
+      "cardId": "2",
+      "type": "outgoing"
+    },
+    {
+      "id": "7",
+      "amount": 2700,
+      "status": "failed",
+      "transactor": "Andy Smith",
+      "date": "2024-02-7",
+      "cardId": "2",
+      "type": "incoming"
+    },
+    {
+      "id": "8",
+      "amount": 250,
+      "status": "pending",
+      "transactor": "Samuel Keegan",
+      "date": "2024-02-6",
+      "cardId": "2",
+      "type": "outgoing"
+    },
+    {
+      "id": "9",
+      "amount": 444.44,
+      "status": "success",
+      "transactor": "Clair Keegan",
+      "date": "2024-02-4",
+      "cardId": "2",
+      "type": "outgoing"
+    },
+    {
+      "id": "10",
+      "amount": 44.44,
+      "status": "success",
+      "transactor": "Clair Keegan",
+      "date": "2024-02-1",
+      "cardId": "1",
+      "type": "incoming"
+    },
+    {
+      "id": "1707710901173",
+      "amount": 1234,
+      "status": "success",
+      "transactor": "Test 1",
+      "date": "2024-02-12",
+      "type": "outgoing",
+      "cardId": "1"
+    },
+    {
+      "id": "1707710990209",
+      "amount": 60.77,
+      "status": "success",
+      "transactor": "Test 22332",
+      "date": "2024-02-12",
+      "type": "outgoing",
+      "cardId": "1"
+    },
+    {
+      "id": "1707711008627",
+      "amount": 590.39,
+      "status": "success",
+      "transactor": "Nother",
+      "date": "2024-02-12",
+      "type": "outgoing",
+      "cardId": "2"
+    }
+  ]
+}

@@ -24,6 +24,8 @@ import { useMutation } from "@tanstack/react-query";
 import { Payment } from "./dataTable/columns";
 import { queryClient } from "@/App";
 import { DialogClose } from "@radix-ui/react-dialog";
+import { Card } from "./card";
+import { BASE_URL } from "@/constants";
 
 const formSchema = z.object({
   name: z.string().min(2).max(100),
@@ -31,11 +33,7 @@ const formSchema = z.object({
   amount: z.number().min(1).max(10000),
 });
 
-interface Props {
-  selectedCard: string;
-}
-
-export const Transfer = ({ selectedCard }: Props) => {
+export const Transfer = (card: Card) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -45,9 +43,9 @@ export const Transfer = ({ selectedCard }: Props) => {
     },
   });
 
-  const mutation = useMutation({
+  const paymentMutation = useMutation({
     mutationFn: (newPayment: Payment) => {
-      return fetch("https://json-mock-server-tau.vercel.app/paymentHistory", {
+      return fetch(`${BASE_URL}/paymentHistory`, {
         method: "POST",
         body: JSON.stringify({
           ...newPayment,
@@ -59,21 +57,55 @@ export const Transfer = ({ selectedCard }: Props) => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["paymentHistory", selectedCard],
+        queryKey: ["paymentHistory", card.id],
       });
       form.reset();
     },
   });
 
+  const cardMutation = useMutation({
+    mutationFn: (updatedCard: Card) => {
+      return fetch(`${BASE_URL}/cards/${card.id}`, {
+        method: "PATCH",
+        body: JSON.stringify({
+          ...updatedCard,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["card", card.id],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ["cards"],
+      });
+      // Promise.all([
+      //   queryClient.invalidateQueries({
+      //     queryKey: ["card", card.id],
+      //   }),
+      //   queryClient.invalidateQueries({
+      //     queryKey: ["cards"],
+      //   }),
+      // ]),
+    },
+  });
+
   function onSubmit(values: z.infer<typeof formSchema>) {
-    mutation.mutate({
+    cardMutation.mutate({
+      ...card,
+      balance: card.balance - values.amount,
+    });
+    paymentMutation.mutate({
       id: `${Date.now()}`,
       amount: values.amount,
       status: "success",
       transactor: values.name,
       date: new Date().toISOString().split("T")[0],
       type: "outgoing",
-      cardId: selectedCard,
+      cardId: card.id,
     });
   }
 
