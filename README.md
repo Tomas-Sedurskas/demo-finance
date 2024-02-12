@@ -6,20 +6,20 @@ The code will be written in a few days.
 
 > Additional commits may happen later to showcase additional features or fix a bug.
 
-Here's a link to a live site:
-[https://demo-finance-sandy.vercel.app/](https://demo-finance-sandy.vercel.app/)
-
-> Deployed to Vercel
-
 ## Stack
 
 - React
 - TypeScript
 - Tailwind
-- DnD Kit
+- React Query
+- Vite
+
+---
+
+Minor packages:
+
+- Shadcn/UI
+- React Hook Forms
+- React Table
 
 > This list will be expanded as new technologies get added.
-
-## Advanced / Key Features
-
-> This will be filled out as code gets commited.
