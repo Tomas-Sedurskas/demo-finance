@@ -9,6 +9,7 @@ export type Payment = {
   transactor: string;
   date: string;
   type: "incoming" | "outgoing";
+  cardId?: string;
 };
 
 export const columns: ColumnDef<Payment>[] = [

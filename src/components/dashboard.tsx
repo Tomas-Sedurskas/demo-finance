@@ -1,10 +1,10 @@
-import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { DataTable } from "@/components/dataTable/dataTable";
 import { Payment, columns } from "./dataTable/columns";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useQuery } from "@tanstack/react-query";
 import { useMemo } from "react";
+import { Transfer } from "@/components/transfer";
 
 interface Props {
   selectedCard: string;
@@ -74,8 +74,7 @@ export const Dashboard = ({ selectedCard }: Props) => {
               **** **** **** {card.data.cardNumber.slice(-5)}
             </div>
             <div className="flex gap-2 ">
-              <Button className="w-full">Transfer</Button>
-              <Button className="w-full">Request</Button>
+              <Transfer selectedCard={selectedCard} />
             </div>
           </div>
 
