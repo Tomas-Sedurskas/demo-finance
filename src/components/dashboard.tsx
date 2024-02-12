@@ -85,7 +85,17 @@ export const Dashboard = ({ selectedCard }: { selectedCard: string }) => {
                     from {card.data.spendingLimit}€
                   </div>
                 </div>
-                <Progress value={(expenses / card.data.spendingLimit) * 100} />
+
+                <Progress
+                  value={
+                    expenses > card.data.spendingLimit
+                      ? 100
+                      : (expenses / card.data.spendingLimit) * 100
+                  }
+                  fillColor={
+                    expenses > card.data.spendingLimit ? "bg-red-600/80" : ""
+                  }
+                />
               </div>
             </div>
             <div className="flex gap-2 w-full">
@@ -104,6 +114,17 @@ export const Dashboard = ({ selectedCard }: { selectedCard: string }) => {
       </div>
     );
 };
+
+console.log(new Date("2024-02-11").getTime());
+console.log(new Date("2024-02-9").getTime());
+console.log(new Date("2024-02-8").getTime());
+console.log(new Date("2024-02-1").getTime());
+console.log(new Date("2024-02-11").getTime());
+console.log(new Date("2024-02-9").getTime());
+console.log(new Date("2024-02-7").getTime());
+console.log(new Date("2024-02-6").getTime());
+console.log(new Date("2024-02-4").getTime());
+console.log(new Date("2024-01-26").getTime());
 
 const LoadingSkeleton = () => {
   return (

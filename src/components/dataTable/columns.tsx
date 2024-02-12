@@ -1,13 +1,15 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { ReactNode } from "react";
+import { Button } from "@/components/ui/button";
+import { ArrowUpDown } from "lucide-react";
 
 export type Payment = {
   id: string;
   amount: number;
   status: "pending" | "processing" | "success" | "failed";
   transactor: string;
-  date: string;
+  date: number;
   type: "incoming" | "outgoing";
   cardId?: string;
 };
@@ -36,16 +38,35 @@ export const columns: ColumnDef<Payment>[] = [
   },
   {
     accessorKey: "date",
-    header: "Date",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Date
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
     cell: ({ getValue }) => {
-      return <span>{new Date(getValue() as string).toDateString()}</span>;
+      return <span>{new Date(getValue() as number).toDateString()}</span>;
     },
   },
   {
     accessorKey: "amount",
     header: "Amount",
-    cell: ({ getValue }) => {
-      return <span>{getValue() as number}€</span>;
+    cell: (info) => {
+      if (info.row.original.type === "incoming") {
+        return (
+          <span className={"text-emerald-600"}>
+            +{info.getValue() as number}€
+          </span>
+        );
+      }
+      return (
+        <span className={"text-red-600"}>-{info.getValue() as number}€</span>
+      );
     },
   },
 ];

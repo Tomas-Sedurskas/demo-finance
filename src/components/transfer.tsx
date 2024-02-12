@@ -91,7 +91,7 @@ export const Transfer = (card: Card) => {
       amount: values.amount,
       status: "success",
       transactor: values.name,
-      date: new Date().toISOString().split("T")[0],
+      date: new Date().getTime(),
       type: "outgoing",
       cardId: card.id,
     });
