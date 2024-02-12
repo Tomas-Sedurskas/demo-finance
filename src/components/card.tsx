@@ -41,11 +41,8 @@ export const Card = ({
       </div>
 
       <div className="flex justify-between items-center">
-        <div className="flex gap-2 text-lg">
-          <span>****</span>
-          <span>****</span>
-          <span>****</span>
-          <span>{cardNumber.slice(-5)}</span>
+        <div className="flex text-lg">
+          <span>**** **** **** {cardNumber.slice(-5)}</span>
         </div>
       </div>
     </button>

@@ -7,6 +7,7 @@ import { useState } from "react";
 
 export const Home = () => {
   const [selectedCard, setSelectedCard] = useState("1");
+
   const { data, isLoading } = useQuery({
     queryKey: ["cards"],
     queryFn: async () => {
@@ -24,7 +25,7 @@ export const Home = () => {
       <div className="flex flex-col w-96 gap-4">
         {isLoading && <Skeleton className="w-full h-40" />}
         {!isLoading &&
-          !!data &&
+          data &&
           data.map((card: any) => (
             <Card
               key={card.id}

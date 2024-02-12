@@ -8,11 +8,7 @@ import { Transfer } from "@/components/transfer";
 import { Card } from "./card";
 import { BASE_URL } from "@/constants";
 
-interface Props {
-  selectedCard: string;
-}
-
-export const Dashboard = ({ selectedCard }: Props) => {
+export const Dashboard = ({ selectedCard }: { selectedCard: string }) => {
   const { data, isLoading } = useQuery({
     queryKey: ["paymentHistory", selectedCard],
     queryFn: async (): Promise<Payment[]> => {
@@ -67,11 +63,12 @@ export const Dashboard = ({ selectedCard }: Props) => {
         <div className="flex w-full gap-2">
           <div className="border rounded-md p-6 flex flex-col gap-6 w-full justify-between">
             <div className="flex flex-col gap-2">
-              <span>Total Balance</span>
+              <span className="text-black/60">Total Balance</span>
               <div className="text-5xl">{card.data.balance}€</div>
             </div>
-            <div className="flex gap-2 text-lg">
-              **** **** **** {card.data.cardNumber.slice(-5)}
+            <div className="flex gap-1 flex-col">
+              <span className="text-black/60">Card Number</span>
+              <span className="text-xl">{card.data.cardNumber}</span>
             </div>
             <div className="flex gap-2 ">
               <Transfer {...card.data} />
@@ -80,28 +77,30 @@ export const Dashboard = ({ selectedCard }: Props) => {
 
           <div className="flex flex-col gap-2 w-full">
             <div className="flex flex-col gap-2 w-full border rounded-md p-6">
-              <span>Spending Limit</span>
+              <span className="text-black/60">Spending Limit</span>
               <div className="flex flex-col gap-6">
                 <div className="flex items-end gap-4">
                   <div className="text-3xl">{expenses.toFixed(2)}€</div>
-                  <div className="text-xl">from {card.data.spendingLimit}€</div>
+                  <div className="text-xl text-black/60">
+                    from {card.data.spendingLimit}€
+                  </div>
                 </div>
                 <Progress value={(expenses / card.data.spendingLimit) * 100} />
               </div>
             </div>
             <div className="flex gap-2 w-full">
               <div className="border rounded-md p-6  w-full">
-                <span>Total Income</span>
+                <span className="text-black/60">Total Income</span>
                 <div className="text-3xl">{income.toFixed(2)}€</div>
               </div>
               <div className="border rounded-md p-6  w-full">
-                <span>Total Expenses</span>
+                <span className="text-black/60">Total Expenses</span>
                 <div className="text-3xl">{expenses.toFixed(2)}€</div>
               </div>
             </div>
           </div>
         </div>
-        <DataTable columns={columns} data={data ? data : []} />
+        <DataTable columns={columns} data={data} />
       </div>
     );
 };

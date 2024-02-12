@@ -2,14 +2,14 @@
   "cards": [
     {
       "id": "1",
-      "balance": 8000,
+      "balance": 6769,
       "cardNumber": "1234 1234 1234 1234",
       "spendingLimit": 4000,
       "brand": "mastercard"
     },
     {
       "id": "2",
-      "balance": 3000,
+      "balance": 2000,
       "cardNumber": "4321 4321 4321 4321",
       "spendingLimit": 2000,
       "brand": "visa"
@@ -136,6 +136,24 @@
       "amount": 590.39,
       "status": "success",
       "transactor": "Nother",
+      "date": "2024-02-12",
+      "type": "outgoing",
+      "cardId": "2"
+    },
+    {
+      "id": "1707729792580",
+      "amount": 1231,
+      "status": "success",
+      "transactor": "321423123",
+      "date": "2024-02-12",
+      "type": "outgoing",
+      "cardId": "1"
+    },
+    {
+      "id": "1707731327520",
+      "amount": 1000,
+      "status": "success",
+      "transactor": "TEsting 2322",
       "date": "2024-02-12",
       "type": "outgoing",
       "cardId": "2"

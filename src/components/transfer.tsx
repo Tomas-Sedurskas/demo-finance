@@ -1,14 +1,22 @@
+import { useForm } from "react-hook-form";
+import { Euro } from "lucide-react";
+import { z } from "zod";
+import { useMutation } from "@tanstack/react-query";
+import { queryClient } from "@/App";
+import { DialogClose } from "@radix-ui/react-dialog";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { buttonVariants } from "@/components/ui/button";
+import { Payment } from "@/components/dataTable/columns";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card } from "@/components/card";
+import { BASE_URL, headers } from "@/constants";
 import {
   Dialog,
   DialogContent,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { buttonVariants } from "@/components/ui/button";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -18,19 +26,11 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Euro } from "lucide-react";
-import { useMutation } from "@tanstack/react-query";
-import { Payment } from "./dataTable/columns";
-import { queryClient } from "@/App";
-import { DialogClose } from "@radix-ui/react-dialog";
-import { Card } from "./card";
-import { BASE_URL } from "@/constants";
 
 const formSchema = z.object({
   name: z.string().min(2).max(100),
   accountNumber: z.string().min(4).max(100),
-  amount: z.number().min(1).max(10000),
+  amount: z.number().min(1).max(100000),
 });
 
 export const Transfer = (card: Card) => {
@@ -50,9 +50,7 @@ export const Transfer = (card: Card) => {
         body: JSON.stringify({
           ...newPayment,
         }),
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers,
       });
     },
     onSuccess: () => {
@@ -70,9 +68,7 @@ export const Transfer = (card: Card) => {
         body: JSON.stringify({
           ...updatedCard,
         }),
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers,
       });
     },
     onSuccess: () => {
@@ -82,14 +78,6 @@ export const Transfer = (card: Card) => {
       queryClient.invalidateQueries({
         queryKey: ["cards"],
       });
-      // Promise.all([
-      //   queryClient.invalidateQueries({
-      //     queryKey: ["card", card.id],
-      //   }),
-      //   queryClient.invalidateQueries({
-      //     queryKey: ["cards"],
-      //   }),
-      // ]),
     },
   });
 
